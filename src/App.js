@@ -1,12 +1,15 @@
-import CardApp from './CardApp';
 import './App.css';
-import '../src/Style/cardView.css';
+// import Mycards from './componant/Mycards';
+import Navebar from './Navebar';
+import Textform from './TextForm';
 
 function App() {
   return (
-   <>
-   <CardApp/>
-   </>
+    <>
+      <Navebar />
+      <Textform />
+      {/* <Mycards/> */}
+    </>
   );
 }
 
