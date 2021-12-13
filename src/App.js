@@ -1,58 +1,72 @@
 import './App.css';
-// import Mycards from './componant/Mycards';
+import React, { useState } from 'react';
+import Table from './Table';
 
+const App = () => {
+  const [note, setNote] = useState("");
+  const [btn, setBtn] = useState([]);
 
-function App() {
+  const inputEvent = (event) => {
+    setNote(event.target.value);
+  }
+
+  const btnClick = () => {
+    setBtn((preValue) => {
+      return [...preValue, note]
+    });
+    setNote('');
+  }
+
+  const delBtn = (id) => {
+    // alert("i am click")
+    setBtn((oldItem) => {
+      return oldItem.filter((arrEle, index) => {
+        return index !== id;
+      })
+    })
+  }
+
   return (
     <>
-      <h1>hello world</h1>
-      <div className='container my-4'>
-      <form class="row g-3">
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">Email</label>
-    <input type="email" class="form-control" id="inputEmail4"/>
-  </div>
-  <div class="col-md-6">
-    <label for="inputPassword4" class="form-label">Password</label>
-    <input type="password" class="form-control" id="inputPassword4"/>
-  </div>
-  <div class="col-12">
-    <label for="inputAddress" class="form-label">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"/>
-  </div>
-  <div class="col-12">
-    <label for="inputAddress2" class="form-label">Address 2</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor"/>
-  </div>
-  <div class="col-md-6">
-    <label for="inputCity" class="form-label">City</label>
-    <input type="text" class="form-control" id="inputCity"/>
-  </div>
-  <div class="col-md-4">
-    <label for="inputState" class="form-label">State</label>
-    <select id="inputState" class="form-select">
-      <option selected>Choose...</option>
-      <option>...</option>
-    </select>
-  </div>
-  <div class="col-md-2">
-    <label for="inputZip" class="form-label">Zip</label>
-    <input type="text" class="form-control" id="inputZip"/>
-  </div>
-  <div class="col-12">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck"/>
-      <label class="form-check-label" for="gridCheck">
-        Check me out
-      </label>
+    <div className='container my-3'><h1>Note App</h1></div>
+    <div style={{ width: "50%" }} className="container">
+    
+      <div className="card-body">
+        <div className="container">
+          <>
+            <div className="mb-3 ">
+              <label htmlFor="note" className="form-label">Enter Note...</label>
+              <input type="text" value={note} onChange={inputEvent} className="form-control" id="note" aria-describedby="emailHelp" />
+            </div>
+            <button type="submit" onClick={btnClick} className="btn btn-primary">Submit</button>
+          </>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="col-12">
-    <button type="submit" class="btn btn-primary">Sign in</button>
-  </div>
-</form>
+      <div className="container">
+        <table className="table">
+          <thead>
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">items</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            {btn.map((oldValue, index) => {
+              return <Table
+                key={index}
+                id={index}
+                text={oldValue}
+                btnV={delBtn}
+              />
+            })}
+          </tbody>
+        </table>
       </div>
     </>
+
   );
 }
 
