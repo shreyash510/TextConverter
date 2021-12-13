@@ -1,12 +1,12 @@
-import CardApp from './CardApp';
 import './App.css';
-import '../src/Style/cardView.css';
+import CardApp from './CardApp';
+import './cardView.css';
 
 function App() {
   return (
-   <>
-   <CardApp/>
-   </>
+    <>
+      <CardApp/>
+    </>
   );
 }
 

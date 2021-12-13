@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react/cjs/react.development";
+import {React, useState } from "react";
 import List from "./List";
 // import List from "./List";
 const CardApp = () => {
