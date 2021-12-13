@@ -2,7 +2,7 @@ import React from "react";
 const List = (props) => {
     return (
         <>
-                <table className="border-none">
+                <table className="border-none my-4">
                     <tbody>
                         <tr>
                             <td><li>{props.txt}</li></td>
